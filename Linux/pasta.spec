@@ -2,7 +2,7 @@
 
 
 a = Analysis(
-    ['laZagne.py'],
+    ['pasta.py'],
     pathex=[],
     binaries=[],
     datas=[],
@@ -22,7 +22,7 @@ exe = EXE(
     a.binaries,
     a.datas,
     [],
-    name='laZagne',
+    name='pasta',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
