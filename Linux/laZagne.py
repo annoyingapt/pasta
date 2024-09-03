@@ -1,23 +1,16 @@
 #!/usr/bin/env python
 # -*- encoding: utf-8 -*-
 
-##############################################################################
-#                                                                            #
-#                           By Alessandro ZANNI                              #
-#                                                                            #
-##############################################################################
-
-# Disclaimer: Do Not Use this program for illegal purposes ;)
 
 import sys
 import os
 import argparse
 import logging
 
-from lazagne.config.write_output import write_in_file, StandardOutput
-from lazagne.config.manage_modules import get_categories
-from lazagne.config.constant import constant
-from lazagne.config.run import create_module_dic, run_lazagne
+from pasta.config.write_output import write_in_file, StandardOutput
+from pasta.config.manage_modules import get_categories
+from pasta.config.constant import constant
+from pasta.config.run import create_module_dic, run_pasta
 
 import time
 
@@ -87,12 +80,12 @@ def clean_args(arg):
     return arg
 
 
-def runLaZagne(category_selected='all', subcategories={}):
+def runpasta(category_selected='all', subcategories={}):
     """
     This function will be removed, still there for compatibility with other tools
     Everything is on the config/run.py file
     """
-    for pwd_dic in run_lazagne(category_selected=category_selected, subcategories=subcategories):
+    for pwd_dic in run_pasta(category_selected=category_selected, subcategories=subcategories):
         yield pwd_dic
 
 
@@ -100,7 +93,7 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description=constant.st.banner, formatter_class=argparse.RawTextHelpFormatter)
     parser.add_argument('--version', action='version', version='Version ' + str(constant.CURRENT_VERSION),
-                        help='laZagne version')
+                        help='pasta version')
 
     # ------------------------------------------- Permanent options -------------------------------------------
     # Version and verbosity
@@ -218,7 +211,7 @@ if __name__ == '__main__':
     category = args['auditType']
     subcategories = clean_args(args)
 
-    for run in runLaZagne(category, subcategories):
+    for run in runpasta(category, subcategories):
         pass
 
     write_in_file(constant.stdout_result)
